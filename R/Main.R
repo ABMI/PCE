@@ -32,6 +32,7 @@
 #' @param cohortTable          The name of the table that will be created in the work database schema.
 #'                             This table will hold the target population cohorts used in this
 #'                             study.
+#' @param vocabularyDatabaseSchema
 #' @param oracleTempSchema     Should be used in Oracle to specify a schema where the user has write
 #'                             priviliges for storing temporary tables.
 #' @param setting              A data.frame with the tId, oId, model triplets to run - if NULL it runs all possible combinations                
@@ -103,6 +104,7 @@
 execute <- function(connectionDetails,
                     cdmDatabaseSchema,
                     cdmDatabaseName = 'friendly database name',
+                    vocabularyDatabaseSchema = cdmDatabaseName,
                     cohortDatabaseSchema = cdmDatabaseSchema,
                     cohortTable = "cohort",
                     oracleTempSchema = cohortDatabaseSchema,
@@ -140,6 +142,7 @@ execute <- function(connectionDetails,
     ParallelLogger::logInfo("Creating cohorts")
     createCohorts(connectionDetails = connectionDetails,
                   cdmDatabaseSchema = cdmDatabaseSchema,
+                  vocabularyDatabaseSchema = vocabularyDatabaseSchema,
                   cohortDatabaseSchema = cohortDatabaseSchema,
                   cohortTable = cohortTable,
                   oracleTempSchema = oracleTempSchema,

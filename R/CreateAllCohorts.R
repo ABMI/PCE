@@ -26,6 +26,7 @@
 #' @param cdmDatabaseSchema    Schema name where your patient-level data in OMOP CDM format resides.
 #'                             Note that for SQL Server, this should include both the database and
 #'                             schema name, for example 'cdm_data.dbo'.
+#' @param vocabularyDatabaseSchema    Schema name where your OMOP vocabulary data in OMOP CDM format resides.                            
 #' @param cohortDatabaseSchema Schema name where intermediate data can be stored. You will need to have
 #'                             write priviliges in this schema. Note that for SQL Server, this should
 #'                             include both the database and schema name, for example 'cdm_data.dbo'.
@@ -40,6 +41,7 @@
 #' @export
 createCohorts <- function(connectionDetails,
                           cdmDatabaseSchema,
+                          vocabularyDatabaseSchema = cdmDatabaseSchema,
                           cohortDatabaseSchema,
                           cohortTable = "cohort",
                           oracleTempSchema,
@@ -52,6 +54,7 @@ createCohorts <- function(connectionDetails,
   .createCohorts(connection = conn,
                  cdmDatabaseSchema = cdmDatabaseSchema,
                  cohortDatabaseSchema = cohortDatabaseSchema,
+                 vocabularyDatabaseSchema = vocabularyDatabaseSchema,
                  cohortTable = cohortTable,
                  oracleTempSchema = oracleTempSchema,
                  outputFolder = outputFolder)
